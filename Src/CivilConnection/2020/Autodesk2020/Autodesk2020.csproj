@@ -53,6 +53,19 @@
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2025|AnyCPU'">
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{28105AE1-A1CC-43AC-9EEA-28802E06A547}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CivilConnection</RootNamespace>
+    <AssemblyName>Autodesk2025</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
   <!--PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -108,29 +121,41 @@
     <Prefer32Bit>false</Prefer32Bit>
     <NoWarn>CS0108</NoWarn>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2025|AnyCPU'">
+    <OutputPath>bin\2025\</OutputPath>
+    <DefineConstants>C2025</DefineConstants>
+    <Optimize>true</Optimize>
+    <DocumentationFile>bin\2025\Autodesk2025.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS0108</NoWarn>
+  </PropertyGroup>
   <PropertyGroup>
     <C3DVersion Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">2020</C3DVersion>
     <C3DVersion Condition="'$(Configuration)|$(Platform)' == '2021|AnyCPU'">2021</C3DVersion>
     <C3DVersion Condition="'$(Configuration)|$(Platform)' == '2022|AnyCPU'">2022</C3DVersion>
     <C3DVersion Condition="'$(Configuration)|$(Platform)' == '2023|AnyCPU'">2023</C3DVersion>
+    <C3DVersion Condition="'$(Configuration)|$(Platform)' == '2025|AnyCPU'">2025</C3DVersion>
   </PropertyGroup>
   <PropertyGroup>
     <DynCoreVersion Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">2.3</DynCoreVersion>
     <DynCoreVersion Condition="'$(Configuration)|$(Platform)' == '2021|AnyCPU'">2.6</DynCoreVersion>
     <DynCoreVersion Condition="'$(Configuration)|$(Platform)' == '2022|AnyCPU'">2.12</DynCoreVersion>
     <DynCoreVersion Condition="'$(Configuration)|$(Platform)' == '2023|AnyCPU'">2.13</DynCoreVersion>
+    <DynCoreVersion Condition="'$(Configuration)|$(Platform)' == '2025|AnyCPU'">3.0</DynCoreVersion>
   </PropertyGroup>
   <PropertyGroup>
     <DynRevitVersion Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">2.3</DynRevitVersion>
     <DynRevitVersion Condition="'$(Configuration)|$(Platform)' == '2021|AnyCPU'">2.6</DynRevitVersion>
     <DynRevitVersion Condition="'$(Configuration)|$(Platform)' == '2022|AnyCPU'">2.12</DynRevitVersion>
     <DynRevitVersion Condition="'$(Configuration)|$(Platform)' == '2023|AnyCPU'">2.13</DynRevitVersion>
+    <DynRevitVersion Condition="'$(Configuration)|$(Platform)' == '2025|AnyCPU'">3.0</DynRevitVersion>
   </PropertyGroup>
   <PropertyGroup>
     <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">..\..\..\..\..\..\..\Revit2020\Revit 2020</DynRevitPath>
     <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2021|AnyCPU'">C:\Program Files\Autodesk\Revit 2021</DynRevitPath>
     <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2022|AnyCPU'">C:\Program Files\Autodesk\Revit 2022</DynRevitPath>
     <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2023|AnyCPU'">C:\Program Files\Autodesk\Revit 2023</DynRevitPath>
+    <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2025|AnyCPU'">C:\Program Files\Autodesk\Revit 2025</DynRevitPath>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>CivilConnection</RootNamespace>

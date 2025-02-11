@@ -585,5 +585,27 @@ namespace CivilConnection
             return string.Format("CivilDocument(Name = {0})", this.Name);
         }
         #endregion
+
+        #region ADDITIONAL METHODS
+        /// <summary>
+        /// Gets the sites.
+        /// </summary>
+        /// <returns></returns>
+        public IList<Site> GetSites()
+        {
+            Utils.Log(string.Format("CivilDocument.GetSites started...", ""));
+
+            IList<Site> output = new List<Site>();
+
+            foreach (AeccSite s in this._document.Sites)
+            {
+                output.Add(new Site(s));
+            }
+
+            Utils.Log(string.Format("CivilDocument.GetSites completed.", ""));
+
+            return output;
+        }
+        #endregion
     }
 }

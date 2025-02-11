@@ -219,7 +219,7 @@ namespace CivilConnection
                 Autodesk.DesignScript.Geometry.Curve temp = Autodesk.DesignScript.Geometry.Line.ByBestFitThroughPoints(new Autodesk.DesignScript.Geometry.Point[] { origin, intersection });
 
                 PolyCurve flat = PolyCurve.ByJoinedCurves(outline.PullOntoPlane(Autodesk.DesignScript.Geometry.Plane.XY()
-                    .Offset(temp.StartPoint.Z)).Explode().Cast<Autodesk.DesignScript.Geometry.Curve>().ToList());
+                    .Offset(temp.StartPoint.Z)).Explode().Cast<Autodesk.DesignScript.Geometry.Curve>().ToList(), 0.001, false);
 
                 Autodesk.DesignScript.Geometry.Curve flatLine = temp.PullOntoPlane(Autodesk.DesignScript.Geometry.Plane.XY().Offset(temp.StartPoint.Z));
 

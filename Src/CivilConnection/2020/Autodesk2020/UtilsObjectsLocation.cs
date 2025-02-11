@@ -4824,7 +4824,7 @@ namespace CivilConnection
         {
             Utils.Log(string.Format("UtilsObjectsLocation.WallBySurface started...", ""));
 
-            if (!PolyCurve.ByJoinedCurves(surface.PerimeterCurves()).IsPlanar)
+            if (!PolyCurve.ByJoinedCurves(surface.PerimeterCurves(), 0.001, false).IsPlanar)
             {
                 Utils.Log("ERROR: Surface is not planar!");
 

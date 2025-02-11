@@ -304,6 +304,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="pkg2025.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="pkg2023.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

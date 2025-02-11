@@ -294,6 +294,7 @@
     <Compile Include="SessionVariables.cs" />
     <Compile Include="ShapePoint.cs" />
     <Compile Include="ShapePointArray.cs" />
+    <Compile Include="Site.cs" />
     <Compile Include="SlopedFloor.cs" />
     <Compile Include="Subassembly.cs" />
     <Compile Include="SubassemblyParameter.cs" />

@@ -68,6 +68,16 @@ namespace CivilConnection
         }
 
         /// <summary>
+        /// Gets land feature line by name.
+        /// </summary>
+        /// <param name="name">The land feature line name.</param>
+        /// <returns></returns>
+        public LandFeatureline GetLandFeatureLineByName(string name)
+        {
+            return this.GetLandFeatureLines().First(x => x.Name == name);
+        }
+
+        /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>

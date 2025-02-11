@@ -606,6 +606,16 @@ namespace CivilConnection
 
             return output;
         }
+
+        /// <summary>
+        /// Gets site by name.
+        /// </summary>
+        /// <param name="name">The site name.</param>
+        /// <returns></returns>
+        public Site GetSiteByName(string name)
+        {
+            return this.GetSites().First(x => x.Name == name);
+        }
         #endregion
     }
 }

@@ -641,7 +641,7 @@ namespace CivilConnection
                 {
                     currentElements.Add(e);
                 }
-               
+
             }
 
             foreach (Revit.Elements.Element e in elements)
@@ -650,7 +650,7 @@ namespace CivilConnection
                 {
                     currentLineElements.Add(e);
                 }
-                
+
             }
 
             foreach (Revit.Elements.Element e in elements)
@@ -659,7 +659,7 @@ namespace CivilConnection
                 {
                     currentMPElements.Add(e);
                 }
-                
+
             }
             #endregion
 
@@ -1311,7 +1311,7 @@ namespace CivilConnection
 
                         if (multipoint != "<None>" && multipoint != "" && multipoint != null)
                         {
-                           
+
                         }
 
                         else
@@ -1406,7 +1406,7 @@ namespace CivilConnection
                                     lp.Rotate(Autodesk.Revit.DB.Line.CreateBound(lp.Point, lp.Point + XYZ.BasisZ),
                                         -currentRotation
                                         + DegToRadians(angle
-                                        
+
                                         - xAxis.AngleAboutAxis(Vector.XAxis(), Vector.ZAxis())
                                         ));
 
@@ -1742,15 +1742,15 @@ namespace CivilConnection
 
             Utils.Log(string.Format("UtilsObjectsLocation.GetElementFeatureline completed.", ""));
 
-            return new Dictionary<string, object> { 
-            {"featureline", featureline}, 
-            {"station", station}, 
-            {"offset", offset}, 
-            {"elevation", elevation}, 
+            return new Dictionary<string, object> {
+            {"featureline", featureline},
+            {"station", station},
+            {"offset", offset},
+            {"elevation", elevation},
             {"angle", angle},
-            {"endstation", endStation}, 
-            {"endoffset", endOffset}, 
-            {"endelevation", endElevation} 
+            {"endstation", endStation},
+            {"endoffset", endOffset},
+            {"endelevation", endElevation}
             };
         }
 
@@ -1781,7 +1781,7 @@ namespace CivilConnection
                 bool found = false;
                 if (fi.Location is Autodesk.DesignScript.Geometry.Point)
                 {
-                    
+
                     found = true;
 
                     if (found)
@@ -2205,7 +2205,7 @@ namespace CivilConnection
 
             if (!SessionVariables.ParametersCreated)
             {
-                CheckParameters(doc); 
+                CheckParameters(doc);
             }
 
             Transform tr = doc.ActiveProjectLocation.GetTotalTransform().Inverse;
@@ -2454,7 +2454,7 @@ namespace CivilConnection
 
             if (!SessionVariables.ParametersCreated)
             {
-                CheckParameters(DocumentManager.Instance.CurrentDBDocument); 
+                CheckParameters(DocumentManager.Instance.CurrentDBDocument);
             }
             Autodesk.DesignScript.Geometry.Point locationPBP = familyInstance.Location;
             Autodesk.DesignScript.Geometry.Point locationWCS = locationPBP.Transform(totalTransformInverse) as Autodesk.DesignScript.Geometry.Point;
@@ -2500,7 +2500,7 @@ namespace CivilConnection
             Utils.Log(string.Format("UtilsObjectsLocation.ObjectLocationParameters completed.", ""));
 
 
-            return new object[] { uniqueId, elementId, typeId, familyName, typeName, mark, corridorName, baselineIndex, code, side, x, y, z, station, offset, elevation, 
+            return new object[] { uniqueId, elementId, typeId, familyName, typeName, mark, corridorName, baselineIndex, code, side, x, y, z, station, offset, elevation,
                 angleZ, update, delete };
         }
 
@@ -2521,7 +2521,7 @@ namespace CivilConnection
             AbstractMEPCurve mep = linearMEPCurve as AbstractMEPCurve;
             if (!SessionVariables.ParametersCreated)
             {
-                CheckParameters(DocumentManager.Instance.CurrentDBDocument); 
+                CheckParameters(DocumentManager.Instance.CurrentDBDocument);
             }
             var lc = mep.InternalMEPCurve.Location as LocationCurve;
             Autodesk.DesignScript.Geometry.Point startPBP = lc.Curve.ToProtoType().StartPoint;
@@ -2636,7 +2636,7 @@ namespace CivilConnection
 
             Utils.Log(string.Format("UtilsObjectsLocation.LinearObjectLocationParameters completed.", ""));
 
-            return new object[] { uniqueId, elementId, typeId, systemName, typeName, mark, corridorName, baselineIndex, code, 
+            return new object[] { uniqueId, elementId, typeId, systemName, typeName, mark, corridorName, baselineIndex, code,
                 side, sx, sy, sz, startStation, startOffset, startElevation, ex, ey, ez, endStation, endOffset, endElevation, update, delete };
         }
 
@@ -3151,16 +3151,16 @@ namespace CivilConnection
                 }
             }
 
-#region DELETE
+            #region DELETE
             if (deleteIds.Count > 0)
             {
                 RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(doc);
                 doc.Delete(deleteIds);
                 RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
             }
-#endregion
+            #endregion
 
-#region UPDATE
+            #region UPDATE
             if (updateIds.Count > 0)
             {
                 RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(doc);
@@ -3364,9 +3364,9 @@ namespace CivilConnection
                     }
                 }
             }
-#endregion
+            #endregion
 
-#region CREATE
+            #region CREATE
             if (createIds.Count > 0)
             {
                 foreach (int i in createIds)
@@ -3534,7 +3534,7 @@ namespace CivilConnection
                     created.Add(CreateFamilyInstance(familyType, fl, !useFeatureLine, station, offset, elevation, angleZ));
                 }
             }
-#endregion
+            #endregion
             // Read 
 
             //TODO: new data output to overwrite the original
@@ -4296,7 +4296,7 @@ namespace CivilConnection
 
             if (!SessionVariables.ParametersCreated)
             {
-                CheckParameters(doc); 
+                CheckParameters(doc);
             }
 
             CoordinateSystem cs = CoordinateSystem.Identity();
@@ -4381,7 +4381,7 @@ namespace CivilConnection
 
             if (!SessionVariables.ParametersCreated)
             {
-                CheckParameters(doc); 
+                CheckParameters(doc);
             }
 
             CoordinateSystem cs = CoordinateSystem.Identity();
@@ -4824,7 +4824,11 @@ namespace CivilConnection
         {
             Utils.Log(string.Format("UtilsObjectsLocation.WallBySurface started...", ""));
 
+#if C2022
+            if (!PolyCurve.ByJoinedCurves(surface.PerimeterCurves()).IsPlanar)
+#else
             if (!PolyCurve.ByJoinedCurves(surface.PerimeterCurves(), 0.001, false).IsPlanar)
+#endif
             {
                 Utils.Log("ERROR: Surface is not planar!");
 
@@ -4835,7 +4839,7 @@ namespace CivilConnection
 
             if (!SessionVariables.ParametersCreated)
             {
-                CheckParameters(doc); 
+                CheckParameters(doc);
             }
 
             var bb = BoundingBox.ByGeometry(new List<Geometry>() { surface });

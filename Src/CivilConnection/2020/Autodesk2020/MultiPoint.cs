@@ -79,12 +79,16 @@ namespace CivilConnection
             {
                 if (!SessionVariables.ParametersCreated)
                 {
-                    UtilsObjectsLocation.CheckParameters(DocumentManager.Instance.CurrentDBDocument); 
+                    UtilsObjectsLocation.CheckParameters(DocumentManager.Instance.CurrentDBDocument);
                 }
 
                 PolyCurve outline = PolyCurve.ByPoints(this.ShapePoints.Points.Select(p => p.RevitPoint).ToList(), true);
 
+#if C2022
+                outline = PolyCurve.ByJoinedCurves(outline.PullOntoPlane(Plane.XY()).Explode().Cast<Curve>().ToList());
+#else
                 outline = PolyCurve.ByJoinedCurves(outline.PullOntoPlane(Plane.XY()).Explode().Cast<Curve>().ToList(), 0.001, false);
+#endif
 
                 var output = Floor.ByOutlineTypeAndLevel(outline, floorType, level);
 
@@ -100,7 +104,7 @@ namespace CivilConnection
                 throw ex;
             }
 
-            
+
         }
 
         #endregion
@@ -149,7 +153,7 @@ namespace CivilConnection
             {
                 if (!SessionVariables.ParametersCreated)
                 {
-                    UtilsObjectsLocation.CheckParameters(DocumentManager.Instance.CurrentDBDocument); 
+                    UtilsObjectsLocation.CheckParameters(DocumentManager.Instance.CurrentDBDocument);
                 }
 
                 PolyCurve outline = PolyCurve.ByPoints(this.ShapePoints.Points.Select(p => p.RevitPoint).ToList(), true);
@@ -204,7 +208,7 @@ namespace CivilConnection
             {
                 if (!SessionVariables.ParametersCreated)
                 {
-                    UtilsObjectsLocation.CheckParameters(DocumentManager.Instance.CurrentDBDocument); 
+                    UtilsObjectsLocation.CheckParameters(DocumentManager.Instance.CurrentDBDocument);
                 }
 
                 output = AdaptiveComponent.ByPoints(new Point[][] { this.ShapePoints.Points.Select(p => p.RevitPoint).ToArray() }, familyType)[0];

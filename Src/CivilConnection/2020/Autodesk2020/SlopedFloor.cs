@@ -122,7 +122,7 @@ namespace CivilConnection
 
             if (!SessionVariables.ParametersCreated)
             {
-                UtilsObjectsLocation.CheckParameters(doc); 
+                UtilsObjectsLocation.CheckParameters(doc);
             }
 
             Autodesk.Revit.DB.Floor floor = null;
@@ -141,7 +141,7 @@ namespace CivilConnection
                 // The normal must be orthogonal to the profile, hence the only possible normal is the Z Axis
 
 #if (C2022 || C2023)
-                floor = Floor.Create(doc, new System.Collections.Generic.List<CurveLoop>() {cl}, floorType.Id, level.Id);
+                floor = Floor.Create(doc, new System.Collections.Generic.List<CurveLoop>() { cl }, floorType.Id, level.Id);
 #else
                 floor = doc.Create.NewFoundationSlab(curveArray, floorType, level, structural, XYZ.BasisZ);
 #endif
@@ -164,9 +164,9 @@ namespace CivilConnection
             ElementBinder.CleanupAndSetElementForTrace(doc, InternalFloor);
         }
 
-#endregion
+        #endregion
 
-#region PUBLIC METHODS
+        #region PUBLIC METHODS
 
         /// <summary>
         /// Create a Revit Floor given it's curve outline and Level
@@ -218,9 +218,13 @@ namespace CivilConnection
 
                 Autodesk.DesignScript.Geometry.Curve temp = Autodesk.DesignScript.Geometry.Line.ByBestFitThroughPoints(new Autodesk.DesignScript.Geometry.Point[] { origin, intersection });
 
+#if C2022
+                PolyCurve flat = PolyCurve.ByJoinedCurves(outline.PullOntoPlane(Autodesk.DesignScript.Geometry.Plane.XY()
+                    .Offset(temp.StartPoint.Z)).Explode().Cast<Autodesk.DesignScript.Geometry.Curve>().ToList());
+#else
                 PolyCurve flat = PolyCurve.ByJoinedCurves(outline.PullOntoPlane(Autodesk.DesignScript.Geometry.Plane.XY()
                     .Offset(temp.StartPoint.Z)).Explode().Cast<Autodesk.DesignScript.Geometry.Curve>().ToList(), 0.001, false);
-
+#endif
                 Autodesk.DesignScript.Geometry.Curve flatLine = temp.PullOntoPlane(Autodesk.DesignScript.Geometry.Plane.XY().Offset(temp.StartPoint.Z));
 
                 if (Math.Abs(Math.Abs(plane.Normal.Dot(Vector.ZAxis())) - 1) < 0.00001)
@@ -282,6 +286,6 @@ namespace CivilConnection
         }
 
 
-#endregion
+        #endregion
     }
 }

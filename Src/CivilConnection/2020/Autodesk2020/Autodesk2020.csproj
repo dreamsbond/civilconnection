@@ -151,7 +151,8 @@
     <DynRevitVersion Condition="'$(Configuration)|$(Platform)' == '2025|AnyCPU'">3.0</DynRevitVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">..\..\..\..\..\..\..\Revit2020\Revit 2020</DynRevitPath>
+    <!--<DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">..\..\..\..\..\..\..\Revit2020\Revit 2020</DynRevitPath>-->
+    <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">C:\Program Files\Autodesk\Revit 2020</DynRevitPath>
     <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2021|AnyCPU'">C:\Program Files\Autodesk\Revit 2021</DynRevitPath>
     <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2022|AnyCPU'">C:\Program Files\Autodesk\Revit 2022</DynRevitPath>
     <DynRevitPath Condition="'$(Configuration)|$(Platform)' == '2023|AnyCPU'">C:\Program Files\Autodesk\Revit 2023</DynRevitPath>

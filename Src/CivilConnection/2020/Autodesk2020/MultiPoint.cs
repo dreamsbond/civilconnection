@@ -84,7 +84,7 @@ namespace CivilConnection
 
                 PolyCurve outline = PolyCurve.ByPoints(this.ShapePoints.Points.Select(p => p.RevitPoint).ToList(), true);
 
-#if C2022
+#if (C2022||C2020)
                 outline = PolyCurve.ByJoinedCurves(outline.PullOntoPlane(Plane.XY()).Explode().Cast<Curve>().ToList());
 #else
                 outline = PolyCurve.ByJoinedCurves(outline.PullOntoPlane(Plane.XY()).Explode().Cast<Curve>().ToList(), 0.001, false);

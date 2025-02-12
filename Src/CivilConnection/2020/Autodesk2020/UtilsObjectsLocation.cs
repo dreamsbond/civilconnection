@@ -4824,7 +4824,7 @@ namespace CivilConnection
         {
             Utils.Log(string.Format("UtilsObjectsLocation.WallBySurface started...", ""));
 
-#if C2022
+#if (C2022||C2020)
             if (!PolyCurve.ByJoinedCurves(surface.PerimeterCurves()).IsPlanar)
 #else
             if (!PolyCurve.ByJoinedCurves(surface.PerimeterCurves(), 0.001, false).IsPlanar)

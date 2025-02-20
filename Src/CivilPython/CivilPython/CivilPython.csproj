@@ -47,6 +47,11 @@
     <DefineConstants>C2020</DefineConstants>
     <Optimize>true</Optimize>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2021|AnyCPU'">
+    <OutputPath>bin\2021\</OutputPath>
+    <DefineConstants>C2021</DefineConstants>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2022|AnyCPU'">
     <OutputPath>bin\2022\</OutputPath>
     <DefineConstants>C2022</DefineConstants>
@@ -176,7 +181,15 @@
     <Content Include="CivilPython Installation Instructions.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="PackageContents.xml">
+    <Content Include="PackageContents2022.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PackageContents2021.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PackageContents2020.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
@@ -199,16 +212,28 @@ copy "$(TargetDir)CivilPython Installation Instructions.txt" "C:\ProgramData\Aut
     <Message Importance="High" Text="Creating CivilPython.bundle..." />
     <MakeDir Directories="$(ProgramData)\Autodesk\ApplicationPlugins\CivilPython$(C3DVersion).bundle\" />
     <MakeDir Directories="$(ProgramData)\Autodesk\ApplicationPlugins\CivilPython$(C3DVersion).bundle\Contents\" />
+    <MakeDir Directories="$(ProgramData)\Autodesk\ApplicationPlugins\CivilPython$(C3DVersion).bundle\Contents\Win\" />
     <ItemGroup>
       <SourceDlls Include="$(TargetDir)*.dll" />
-      <SourcePkgContentsXML Include="$(TargetDir)PackageContents.xml" />
+      <SourcePackageContentsXML Include="$(TargetDir)PackageContents$(C3DVersion).xml" />
       <SourceInstallationInstructionTXT Include="$(TargetDir)CivilPython Installation Instructions.txt" />
     </ItemGroup>
-    <Copy SourceFiles="@(SourceDlls)" DestinationFolder="$(TargetDir)\CivilPython$(C3DVersion).bundle\Contents\" />
-    <Copy SourceFiles="@(SourcePkgContentsXML)" DestinationFolder="$(TargetDir)\CivilPython$(C3DVersion).bundle\" />
+    <Copy SourceFiles="@(SourceDlls)" DestinationFolder="$(TargetDir)\CivilPython$(C3DVersion).bundle\Contents\Win\" />
     <Copy SourceFiles="@(SourceInstallationInstructionTXT)" DestinationFolder="$(TargetDir)\CivilPython$(C3DVersion).bundle\" />
+    <Move SourceFiles="@(SourcePackageContentsXML)" DestinationFiles="$(TargetDir)\CivilPython$(C3DVersion).bundle\PackageContents.xml" />
     <ItemGroup>
       <SourcePackage Include="$(TargetDir)\CivilPython$(C3DVersion).bundle\**\*.*" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="PackageContents2020.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="PackageContents2021.xmln">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="PackageContents2022.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
     <PropertyGroup>
       <DeployFolder>$(ProgramData)\Autodesk\ApplicationPlugins\CivilPython$(C3DVersion).bundle\</DeployFolder>

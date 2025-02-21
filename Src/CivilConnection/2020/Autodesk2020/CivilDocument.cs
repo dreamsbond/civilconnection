@@ -116,7 +116,6 @@ namespace CivilConnection
 
             DateTime start = DateTime.Now;
 
-
             while (true)
             {
                 if (System.IO.File.Exists(xmlPath))

@@ -90,6 +90,20 @@ namespace CivilConnection
 
         #region PUBLIC PROPERTIES
         /// <summary>
+        /// Gets the handle.
+        /// </summary>
+        /// <value>
+        /// The handle.
+        /// </value>
+        public string Handle { get { return this._featureline.Handle; } }
+        /// <summary>
+        /// Gets the object id.
+        /// </summary>
+        /// <value>
+        /// The object id.
+        /// </value>
+        public long ObjectId { get { return this._featureline.ObjectID; } }
+        /// <summary>
         /// Gets the name.
         /// </summary>
         /// <value>
@@ -293,7 +307,7 @@ namespace CivilConnection
         /// </returns>
         public override string ToString()
         {
-            return string.Format("LandFeatureline(Name = {0}, Style = {1})", this.Name, this.Style);
+            return string.Format("LandFeatureline(Handle = {0}, ObjectId = {1}, Name = {2}, Style = {3})", this.Handle, this.ObjectId, this.Name, this.Style);
         }
 
         #endregion

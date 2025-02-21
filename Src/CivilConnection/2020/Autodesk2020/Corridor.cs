@@ -80,6 +80,20 @@ namespace CivilConnection
         /// </value>
         public IList<Baseline> Baselines { get { return _baselines; } }
         /// <summary>
+        /// Gets the handle.
+        /// </summary>
+        /// <value>
+        /// The handle.
+        /// </value>
+        public string Handle { get { return this._corridor.Handle; } }
+        /// <summary>
+        /// Gets the object id.
+        /// </summary>
+        /// <value>
+        /// The object id.
+        /// </value>
+        public long ObjectId { get { return this._corridor.ObjectID; } }
+        /// <summary>
         /// Gets the Corridor name.
         /// </summary>
         /// <value>
@@ -740,7 +754,7 @@ namespace CivilConnection
         /// </returns>
         public override string ToString()
         {
-            return string.Format("Corridor(Name = {0})", this.Name);
+            return string.Format("Corridor(Handle = {0}, ObjectId = {1}, Name = {2})", this.Handle, this.ObjectId, this.Name);
         }
 
         /// <summary>

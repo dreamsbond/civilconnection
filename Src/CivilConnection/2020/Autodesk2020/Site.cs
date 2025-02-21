@@ -15,16 +15,30 @@ namespace CivilConnection
     {
         #region PRIVATE PROPERTIES
         /// <summary>
+        /// The Site
+        /// </summary>
+        internal AeccSite _site;
+        /// <summary>
         /// The name
         /// </summary>
         string _name;
-        /// <summary>
-        /// The Site
-        /// </summary>
-        private AeccSite _site;
         #endregion
 
         #region PUBLIC PROPERTIES
+        /// <summary>
+        /// Gets the handle.
+        /// </summary>
+        /// <value>
+        /// The handle.
+        /// </value>
+        public string Handle { get { return this._site.Handle; } }
+        /// <summary>
+        /// Gets the object id.
+        /// </summary>
+        /// <value>
+        /// The object id.
+        /// </value>
+        public long ObjectId { get { return this._site.ObjectID; } }
         /// <summary>
         /// Gets the name.
         /// </summary>
@@ -85,7 +99,7 @@ namespace CivilConnection
         /// </returns>
         public override string ToString()
         {
-            return string.Format("Site(Name = {0})", this.Name);
+            return string.Format("Site(Handle = {0}, ObjectId = {1}, Name = {2})", this.Handle, this.ObjectId, this.Name);
         }
 
         #endregion
